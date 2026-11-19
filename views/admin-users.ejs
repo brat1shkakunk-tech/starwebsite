@@ -1,0 +1,31 @@
+<% var pageTitle = 'Пользователи'; var body = `
+<h1>👥 Пользователи</h1>
+<ul class="nav nav-tabs mb-4">
+  <li class="nav-item"><a class="nav-link" href="/admin">Настройки и услуги</a></li>
+  <li class="nav-item"><a class="nav-link active" href="/admin/users">Пользователи</a></li>
+</ul>
+<div class="row g-3">
+  ${users.map(u => `
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <form method="POST" action="/admin/user/update">
+            <input type="hidden" name="id" value="${u.id}">
+            <div class="mb-2"><label class="form-label small">Логин (ID ${u.id})</label>
+              <input type="text" name="username" class="form-control" value="${u.username}" required></div>
+            <div class="mb-2"><label class="form-label small">Роль</label>
+              <select name="role" class="form-select">
+                <option value="user" ${u.role==='user'?'selected':''}>user</option>
+                <option value="admin" ${u.role==='admin'?'selected':''}>admin</option>
+              </select></div>
+            <div class="mb-3"><label class="form-label small">Новый пароль</label>
+              <input type="password" name="password" class="form-control" placeholder="Пусто = не менять"></div>
+            <button class="btn btn-primary w-100">💾 Сохранить</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  `).join('')}
+</div>
+` %>
+<%- include('layout', { body }) %>
