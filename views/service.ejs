@@ -1,0 +1,33 @@
+<% var pageTitle = service.title; var body = `
+<div class="row">
+  <div class="col-lg-8">
+    <div class="service-icon-lg">${service.icon}</div>
+    <h1>${service.title}</h1>
+    <p class="lead">${service.description}</p>
+    <h3 class="mt-4">Что мы делаем:</h3>
+    <ul class="list-group mb-4">
+      <li class="list-group-item">✅ Бесплатная диагностика</li>
+      <li class="list-group-item">✅ Оригинальные запчасти</li>
+      <li class="list-group-item">✅ Гарантия до 12 месяцев</li>
+      <li class="list-group-item">✅ Ремонт от 30 минут</li>
+    </ul>
+  </div>
+  <div class="col-lg-4">
+    <div class="card sticky-top" style="top:80px">
+      <div class="card-body">
+        <h4 class="text-center">Цена: от <b class="text-danger">${service.price} ₽</b></h4>
+        <hr>
+        <form id="orderForm">
+          <input type="hidden" name="service" value="${service.title}">
+          <input type="text" name="name" class="form-control mb-2" placeholder="Ваше имя" required>
+          <input type="tel" name="phone" class="form-control mb-2" placeholder="Телефон" required>
+          <textarea name="comment" class="form-control mb-2" placeholder="Опишите проблему" rows="3"></textarea>
+          <button class="btn btn-success w-100">📞 Оставить заявку</button>
+        </form>
+        <div id="orderMsg" class="alert alert-success mt-2 d-none">Заявка отправлена! Мы перезвоним.</div>
+      </div>
+    </div>
+  </div>
+</div>
+` %>
+<%- include('layout', { body }) %>
