@@ -1,0 +1,20 @@
+<% var pageTitle = 'Регистрация'; var body = `
+<div class="row justify-content-center">
+  <div class="col-md-5">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="text-center mb-4">Регистрация</h3>
+        ${error ? `<div class="alert alert-danger">${error}</div>` : ''}
+        <div class="alert alert-info small">💡 Первый зарегистрированный пользователь автоматически получает админ-права.</div>
+        <form method="POST" action="/register">
+          <input type="text" name="username" class="form-control mb-2" placeholder="Логин" required>
+          <input type="password" name="password" class="form-control mb-3" placeholder="Пароль (мин. 4 символа)" required>
+          <button class="btn btn-success w-100">Создать аккаунт</button>
+        </form>
+        <p class="text-center mt-3">Уже есть аккаунт? <a href="/login">Войти</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+` %>
+<%- include('layout', { body }) %>
