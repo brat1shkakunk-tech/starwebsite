@@ -1,0 +1,59 @@
+<% var pageTitle = 'Главная'; var body = `
+<section class="hero text-center py-5 bg-gradient">
+  <h1 class="display-4 fw-bold">Ремонт техники в ${settings.address.split(',')[0]}</h1>
+  <p class="lead">${settings.about}</p>
+  <div class="row justify-content-center mt-4 g-3">
+    <div class="col-auto"><div class="stat-box">🏆 <b>${settings.completed_orders}</b><br><small>заказов</small></div></div>
+    <div class="col-auto"><div class="stat-box">⭐ <b>4.9</b><br><small>рейтинг</small></div></div>
+    <div class="col-auto"><div class="stat-box">🛡️ <b>1 год</b><br><small>гарантия</small></div></div>
+  </div>
+</section>
+
+<section id="services" class="py-5">
+  <h2 class="text-center mb-4">Наши услуги</h2>
+  <div class="row g-4">
+    ${services.map(s => `
+      <div class="col-md-6 col-lg-4">
+        <div class="card service-card h-100">
+          <div class="card-body text-center">
+            <div class="service-icon">${s.icon}</div>
+            <h4>${s.title}</h4>
+            <p class="text-muted">${s.description}</p>
+            <p class="price">от <b>${s.price} ₽</b></p>
+            <a href="/service/${s.slug}" class="btn btn-primary w-100">Подробнее</a>
+          </div>
+        </div>
+      </div>
+    `).join('')}
+  </div>
+</section>
+
+<section id="calc" class="py-5 bg-light rounded">
+  <h2 class="text-center mb-4">🧮 Калькулятор стоимости</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <label class="form-label">Выберите услугу:</label>
+      <select id="calcService" class="form-select mb-3">
+        ${services.map(s => `<option value="${s.price}">${s.title}</option>`).join('')}
+      </select>
+      <label class="form-label">Срочность:</label>
+      <select id="calcUrgency" class="form-select mb-3">
+        <option value="1">Обычная (x1)</option>
+        <option value="1.5">Срочная (x1.5)</option>
+        <option value="2">Очень срочная (x2)</option>
+      </select>
+      <div class="alert alert-success fs-4 text-center" id="calcResult">Итого: <b>0 ₽</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="contacts" class="py-5">
+  <h2 class="text-center mb-4">Контакты</h2>
+  <div class="row text-center g-3">
+    <div class="col-md-4"><div class="p-3 bg-light rounded">📞<br><b>${settings.phone}</b></div></div>
+    <div class="col-md-4"><div class="p-3 bg-light rounded">📍<br><b>${settings.address}</b></div></div>
+    <div class="col-md-4"><div class="p-3 bg-light rounded">✉️<br><b>${settings.email}</b></div></div>
+  </div>
+</section>
+` %>
+<%- include('layout', { body }) %>
